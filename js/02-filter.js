@@ -25,27 +25,55 @@ const refs = {
   input: document.querySelector('#filter'),
 };
 
-refs.input.addEventListener('input', _.debounce(onFilterChange, 300));
+refs.input.addEventListener('input', onFilterChange)
 
 const listItemsMarkup = createListItemsMarkup(tech);
-populateList(listItemsMarkup);
+
+refs.list.innerHTML = listItemsMarkup
 
 function createListItemsMarkup(items) {
   return items.map(item => `<li>${item.label}</li>`).join('');
 }
 
 function onFilterChange(evt) {
-  console.log('INPUT');
   const filter = evt.target.value.toLowerCase();
 
-  const filteredItems = tech.filter(t =>
-    t.label.toLowerCase().includes(filter),
-  );
+  const filteredItems = tech.filter(t => t.label.toLowerCase().includes(filter));
 
   const listItemsMarkup = createListItemsMarkup(filteredItems);
-  populateList(listItemsMarkup);
+  refs.list.innerHTML = listItemsMarkup;
 }
 
-function populateList(markup) {
-  refs.list.innerHTML = markup;
-}
+
+
+
+
+
+
+
+
+
+// refs.input.addEventListener('input', _.debounce(onFilterChange, 300));
+
+// const listItemsMarkup = createListItemsMarkup(tech);
+// populateList(listItemsMarkup);
+
+// function createListItemsMarkup(items) {
+//   return items.map(item => `<li>${item.label}</li>`).join('');
+// }
+
+// function onFilterChange(evt) {
+//   console.log('INPUT');
+//   const filter = evt.target.value.toLowerCase();
+
+//   const filteredItems = tech.filter(t =>
+//     t.label.toLowerCase().includes(filter),
+//   );
+
+//   const listItemsMarkup = createListItemsMarkup(filteredItems);
+//   populateList(listItemsMarkup);
+// }
+
+// function populateList(markup) {
+//   refs.list.innerHTML = markup;
+// }
